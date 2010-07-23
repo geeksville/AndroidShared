@@ -20,20 +20,27 @@
  ******************************************************************************/
 package com.geeksville.maps;
 
+import org.andnav.osm.views.OpenStreetMapView;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-public class GeeksvilleMapView extends com.google.android.maps.MapView {
+public class GeeksvilleMapView extends OpenStreetMapView {
 
 	public GeeksvilleMapView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-	}
 
-	public GeeksvilleMapView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+		// this.getController().setZoom(this.getRenderer().ZOOM_MAXLEVEL); //
+		// Start
+		// off
+		// zoomed
+		// all
+		// the
+		// way
+		// in
 	}
 
 	/**
