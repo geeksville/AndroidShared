@@ -134,7 +134,10 @@ public class CenteredMyLocationOverlay extends MyLocationOverlay {
 	 */
 	@Override
 	public void onDraw(Canvas c, OpenStreetMapView mapView) {
-		keepCentered(mapView, getMyLocation());
+		GeoPoint myLoc = getMyLocation();
+
+		if (myLoc != null)
+			keepCentered(mapView, myLoc);
 
 		super.onDraw(c, mapView);
 	}
