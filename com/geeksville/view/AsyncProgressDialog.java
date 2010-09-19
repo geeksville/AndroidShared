@@ -44,7 +44,11 @@ public abstract class AsyncProgressDialog extends AsyncTask<Void, Void, Void> {
 	private String completionDialogTitle = null;
 	private ProgressDialog dialog;
 
-	public AsyncProgressDialog(Context context, String dialogTitle, String dialogMessage) {
+	protected Context context;
+
+	public AsyncProgressDialog(Context _context, String dialogTitle, String dialogMessage) {
+		context = _context;
+
 		dialog = ProgressDialog.show(context, dialogTitle, dialogMessage, true, false);
 	}
 
@@ -162,7 +166,13 @@ public abstract class AsyncProgressDialog extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected Void doInBackground(Void... params) {
-		doInBackground();
+		try {
+			doInBackground();
+		} catch (Exception ex) {
+			// If our background thread threw an uncaught exception, convert it
+			// into an error dialog/toast
+			completionMessage = ex.getLocalizedMessage();
+		}
 
 		return null;
 	}
