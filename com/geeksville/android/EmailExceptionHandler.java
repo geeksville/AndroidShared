@@ -50,7 +50,7 @@ public class EmailExceptionHandler extends PostMortemReportExceptionHandler impl
 	// to this
 	// account
 	// the following may be something you wish to consider localizing
-	private static final String MSG_BODY = "I'm sorry, this Geeksville application has crashed.  Would you please send this email so we can fix this bug? "
+	private String MSG_BODY = "I'm sorry, this Geeksville application has crashed.  Would you please send this email so we can fix this bug? "
 			+
 			"No personal information is being sent (you can check by reading the rest of the email).";
 
