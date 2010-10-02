@@ -20,6 +20,7 @@
  ******************************************************************************/
 package com.geeksville.view;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -55,10 +56,10 @@ public abstract class DrawableWrapper extends Drawable {
 		drawable.setColorFilter(cf);
 	}
 
-	@Override
-	protected void onBoundsChange(Rect bounds) {
-		drawable.setBounds(bounds.left, bounds.top, bounds.right, bounds.bottom);
-	}
+	// @Override
+	// protected void onBoundsChange(Rect bounds) {
+	// drawable.setBounds(bounds.left, bounds.top, bounds.right, bounds.bottom);
+	// }
 
 	@Override
 	public int getIntrinsicWidth() {
@@ -68,6 +69,41 @@ public abstract class DrawableWrapper extends Drawable {
 	@Override
 	public int getIntrinsicHeight() {
 		return drawable.getIntrinsicHeight();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.graphics.drawable.Drawable#draw(android.graphics.Canvas)
+	 */
+	@Override
+	public void draw(Canvas canvas) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.graphics.drawable.Drawable#setBounds(int, int, int, int)
+	 */
+	@Override
+	public void setBounds(int left, int top, int right, int bottom) {
+		// TODO Auto-generated method stub
+		super.setBounds(left, top, right, bottom);
+		drawable.setBounds(left, top, right, bottom);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.graphics.drawable.Drawable#setBounds(android.graphics.Rect)
+	 */
+	@Override
+	public void setBounds(Rect bounds) {
+		// TODO Auto-generated method stub
+		super.setBounds(bounds);
+		drawable.setBounds(bounds);
 	}
 
 }

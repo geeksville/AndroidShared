@@ -43,6 +43,9 @@ public class GeeksvilleMapView extends OpenStreetMapView {
 		// the
 		// way
 		// in
+
+		// Start off somewhat zoomed in
+		this.getController().setZoom(4);
 	}
 
 	/**
