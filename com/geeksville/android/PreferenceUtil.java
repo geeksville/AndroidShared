@@ -36,13 +36,23 @@ public class PreferenceUtil {
 	 * @param defaultValue
 	 * @return
 	 */
-	public static float getFloat(Context context, String prefsname, float defaultValue) {
+	public static float getFloat(Context context, String prefsname,
+			float defaultValue) {
 		try {
-			return PreferenceManager.getDefaultSharedPreferences(context).getFloat(prefsname, defaultValue);
+			return PreferenceManager.getDefaultSharedPreferences(context)
+					.getFloat(prefsname, defaultValue);
 		} catch (Exception ex) {
-			Log.w(TAG, "Ignoring malformed preference: " + prefsname);
+			try {
+				// Try to convert it ourselves (in case it was stored as a
+				// string)
+				return Float.parseFloat(PreferenceManager
+						.getDefaultSharedPreferences(context).getString(
+								prefsname, Float.toString(defaultValue)));
+			} catch (Exception e) {
+				Log.w(TAG, "Ignoring malformed preference: " + prefsname);
 
-			return defaultValue;
+				return defaultValue;
+			}
 		}
 	}
 }
