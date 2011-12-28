@@ -26,33 +26,60 @@ import android.util.Log;
 
 public class PreferenceUtil {
 
-	private static final String TAG = "PreferenceUtil";
+  private static final String TAG = "PreferenceUtil";
 
-	/**
-	 * Read prefs string, but gracefully ignore malformatted strings
-	 * 
-	 * @param context
-	 * @param prefsname
-	 * @param defaultValue
-	 * @return
-	 */
-	public static float getFloat(Context context, String prefsname,
-			float defaultValue) {
-		try {
-			return PreferenceManager.getDefaultSharedPreferences(context)
-					.getFloat(prefsname, defaultValue);
-		} catch (Exception ex) {
-			try {
-				// Try to convert it ourselves (in case it was stored as a
-				// string)
-				return Float.parseFloat(PreferenceManager
-						.getDefaultSharedPreferences(context).getString(
-								prefsname, Float.toString(defaultValue)));
-			} catch (Exception e) {
-				Log.w(TAG, "Ignoring malformed preference: " + prefsname);
+  /**
+   * Read prefs string, but gracefully ignore malformatted strings
+   * 
+   * @param context
+   * @param prefsname
+   * @param defaultValue
+   * @return
+   */
+  public static float getFloat(Context context, String prefsname,
+      float defaultValue) {
+    try {
+      return PreferenceManager.getDefaultSharedPreferences(context).getFloat(
+          prefsname, defaultValue);
+    } catch (Exception ex) {
+      try {
+        // Try to convert it ourselves (in case it was stored as a
+        // string)
+        return Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(
+            context).getString(prefsname, Float.toString(defaultValue)));
+      } catch (Exception e) {
+        Log.w(TAG, "Ignoring malformed preference: " + prefsname);
 
-				return defaultValue;
-			}
-		}
-	}
+        return defaultValue;
+      }
+    }
+  }
+
+  /**
+   * Read prefs string, but gracefully ignore malformatted strings
+   * 
+   * @param context
+   * @param prefsname
+   * @param defaultValue
+   * @return
+   */
+  public static boolean getBoolean(Context context, String prefsname,
+      boolean defaultValue) {
+    try {
+      return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+          prefsname, defaultValue);
+    } catch (Exception ex) {
+      try {
+        // Try to convert it ourselves (in case it was stored as a
+        // string)
+        return Boolean.parseBoolean(PreferenceManager
+            .getDefaultSharedPreferences(context).getString(prefsname,
+                Boolean.toString(defaultValue)));
+      } catch (Exception e) {
+        Log.w(TAG, "Ignoring malformed preference: " + prefsname);
+
+        return defaultValue;
+      }
+    }
+  }
 }
