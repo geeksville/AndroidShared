@@ -23,71 +23,68 @@ package com.geeksville.maps;
 import org.andnav.osm.views.OpenStreetMapView;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 
 public class GeeksvilleMapView extends OpenStreetMapView {
 
-	private Runnable postLayout;
+  private Runnable postLayout;
 
-	public GeeksvilleMapView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+  public GeeksvilleMapView(Context context, AttributeSet attrs) {
+    super(context, attrs);
 
-		// this.getController().setZoom(this.getRenderer().ZOOM_MAXLEVEL); //
-		// Start
-		// off
-		// zoomed
-		// all
-		// the
-		// way
-		// in
+    // this.getController().setZoom(this.getRenderer().ZOOM_MAXLEVEL); //
+    // Start
+    // off
+    // zoomed
+    // all
+    // the
+    // way
+    // in
 
-		// Start off somewhat zoomed in
-		this.getController().setZoom(4);
-	}
+    // Start off somewhat zoomed in
+    this.getController().setZoom(4);
+  }
 
-	/**
-	 * To work around OSM problems, we support calling a post layout callback
-	 * 
-	 * @see android.view.View#onLayout(boolean, int, int, int, int)
-	 */
-	@Override
-	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-		super.onLayout(changed, left, top, right, bottom);
+  /**
+   * To work around OSM problems, we support calling a post layout callback
+   * 
+   * @see android.view.View#onLayout(boolean, int, int, int, int)
+   */
+  @Override
+  protected void onLayout(boolean changed, int left, int top, int right,
+      int bottom) {
+    super.onLayout(changed, left, top, right, bottom);
 
-		if (postLayout != null)
-			postLayout.run();
-	}
+    if (postLayout != null)
+      postLayout.run();
+  }
 
-	public void setPostLayout(Runnable callback) {
-		postLayout = callback;
-	}
+  public void setPostLayout(Runnable callback) {
+    postLayout = callback;
+  }
 
-	/*	*//**
-	 * Work around for
-	 * http://code.google.com/p/android/issues/detail?id=4599
-	 * 
-	 * @see android.view.ViewGroup#dispatchTouchEvent(android.view.MotionEvent)
-	 */
-	/*
-	 * @Override public boolean dispatchTouchEvent(MotionEvent ev) { try {
-	 * return super.dispatchTouchEvent(ev); } catch (Exception ex) {
-	 * Log.e("GeeksvilleMapView", "error at zoom level " + this.getZoomLevel());
-	 * Log.e("GeeksvilleMapView", "Error in MapView:" +
-	 * Log.getStackTraceString(ex)); }
-	 * 
-	 * return true; }
-	 * 
-	 * 
-	 * Work around for http://code.google.com/p/android/issues/detail?id=4599
-	 * 
-	 * @see android.view.View#draw(android.graphics.Canvas)
-	 * 
-	 * @Override public void draw(Canvas canvas) { try { // TODO Auto-generated
-	 * method stub super.draw(canvas); } catch (Exception ex) {
-	 * Log.e("GeeksvilleMapView", ex.toString()); } }
-	 */
+  /*	*//**
+   * Work around for http://code.google.com/p/android/issues/detail?id=4599
+   * 
+   * @see android.view.ViewGroup#dispatchTouchEvent(android.view.MotionEvent)
+   */
+  /*
+   * @Override public boolean dispatchTouchEvent(MotionEvent ev) { try { return
+   * super.dispatchTouchEvent(ev); } catch (Exception ex) {
+   * Log.e("GeeksvilleMapView", "error at zoom level " + this.getZoomLevel());
+   * Log.e("GeeksvilleMapView", "Error in MapView:" +
+   * Log.getStackTraceString(ex)); }
+   * 
+   * return true; }
+   * 
+   * 
+   * Work around for http://code.google.com/p/android/issues/detail?id=4599
+   * 
+   * @see android.view.View#draw(android.graphics.Canvas)
+   * 
+   * @Override public void draw(Canvas canvas) { try { // TODO Auto-generated
+   * method stub super.draw(canvas); } catch (Exception ex) {
+   * Log.e("GeeksvilleMapView", ex.toString()); } }
+   */
 
 }
